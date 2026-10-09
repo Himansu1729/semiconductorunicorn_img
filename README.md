@@ -12,3 +12,6 @@ Public image host for the Instagram account @semiconductorunicorn. Metricool pul
 
 ## Image links
 `https://raw.githubusercontent.com/Himansu1729/semiconductorunicorn_img/main/<folder>/<file>.png`
+
+## Daily fact post (18:00 Europe/Paris)
+`tools/fact_template.py` builds the single-image "SEMICONDUCTOR FACTS #N" post in the owner's design. Run from `tools/`: `OUT_DIR=./out python3 -I fact_template.py fact.json` (see the docstring for the JSON keys; scenes: euv, chip, wafer). Output goes to `YYYY-MM-DD/fact_<slug>.png`.
