@@ -1,7 +1,7 @@
-"""Single-image "SEMICONDUCTOR FACTS #N" post in the account owner's own design.
+"""Single-image "SEMICONDUCTOR FACTS" post (no numbering) in the account owner's own design.
 
 Usage (from tools/):  OUT_DIR=./out python3 -I fact_template.py fact.json
-fact.json keys: num, line1 (cyan), line2 (white), line3 (purple), body, highlight,
+fact.json keys: (no number is shown; num only seeds the background) num, line1 (cyan), line2 (white), line3 (purple), body, highlight,
   benefits[3] (2-line labels, '\n' separated), bottom[4] ([icon, label]), scene
   (euv|chip|wafer), scene_notes{...}, tagline (2 lines '\n'), file (output name)
 """
@@ -290,10 +290,9 @@ def build(fact):
     # header
     f_h = F("Inter-SemiBold.otf", 24)
     x = M
-    for part, col in (("SEMICONDUCTOR FACTS ", MUTED), ("#%d" % fact["num"], CYAN)):
-        fp = F("Inter-Bold.otf", 26) if col == CYAN else f_h
-        d.text((P(x), P(36)), part, font=fp, fill=col)
-        x += fp.getlength(part) / S
+    d.text((P(x), P(36)), "SEMICONDUCTOR ", font=f_h, fill=MUTED)
+    x += f_h.getlength("SEMICONDUCTOR ") / S
+    d.text((P(x), P(36)), "FACTS", font=F("Inter-Bold.otf", 26), fill=CYAN)
     for i, t in enumerate(("SMALL CHIPS.", "A BRIGHTER TOMORROW.")):
         f = F("Inter-SemiBold.otf", 17)
         d.text((W * S - P(M) - f.getlength(t), P(30 + i * 22)), t, font=f, fill=CYAN)
