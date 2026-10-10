@@ -142,14 +142,17 @@ def cone(img, x, y, to_side=-1):
 
 def callouts(img, notes, caption, flash, scale):
     cx, cy, r = CIRC
+    fact_dark_scale = bool(notes.get("scale_bg"))
     rrect(img, (700, 585, 1024, 695), 14, fill=(10, 16, 40), alpha=240, outline=(60, 80, 140), width=2)
     d = ImageDraw.Draw(img)
     text_block(d, 720, 597, notes.get("caption", caption), F("Inter-SemiBold.otf", 24), WHITE, 285, 33)
     if flash or notes.get("flash"):
         note(img, 318, 1082, notes.get("flash", flash), 0, 26, CYAN, "left")
     if scale or notes.get("scale"):
-        d = ImageDraw.Draw(img)
         y0, x0, x1 = cy + 138, cx - 80, cx + 80
+        if fact_dark_scale:
+            rrect(img, (x0 - 14, y0 - 16, x1 + 14, y0 + 44), 10, fill=(6, 10, 28), alpha=225)
+        d = ImageDraw.Draw(img)
         for xx in (x0, x1):
             d.line([(P(xx), P(y0 - 7)), (P(xx), P(y0 + 7))], fill=WHITE, width=P(3))
         d.line([(P(x0), P(y0)), (P(x1), P(y0))], fill=WHITE, width=P(3))
