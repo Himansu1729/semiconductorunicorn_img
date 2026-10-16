@@ -265,7 +265,13 @@ def scene_wafer(img, notes):
         wr = r * 0.92
         d.ellipse([P(cx - wr), P(cy - wr), P(cx + wr), P(cy + wr)], fill=(110, 125, 165, 255), outline=(220, 230, 255, 255), width=P(4))
         step = 46
-        for gx in range(-8, 9):
+        if notes.get("single"):  # one huge square = wafer-scale chip
+            sq = wr * 0.68
+            d.rectangle([P(cx - sq), P(cy - sq), P(cx + sq), P(cy + sq)], fill=(70, 95, 200, 255), outline=(150, 190, 255, 255), width=P(3))
+            for k in range(-5, 6):
+                d.line([(P(cx + k * sq / 5.5), P(cy - sq)), (P(cx + k * sq / 5.5), P(cy + sq))], fill=(110, 150, 240, 120), width=P(1))
+                d.line([(P(cx - sq), P(cy + k * sq / 5.5)), (P(cx + sq), P(cy + k * sq / 5.5))], fill=(110, 150, 240, 120), width=P(1))
+        for gx in (() if notes.get("single") else range(-8, 9)):
             for gy in range(-8, 9):
                 x, y = cx + gx * step, cy + gy * step
                 if math.hypot(x - cx, y - cy) < wr - 30:
