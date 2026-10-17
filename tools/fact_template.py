@@ -286,7 +286,59 @@ def scene_wafer(img, notes):
     arrow(img, [(250, 940), (360, 880), (470, 840)], WHITE, 3)
 
 
-SCENES = {"euv": scene_euv, "chip": scene_chip, "wafer": scene_wafer}
+def scene_mirror(img, notes):
+    cx, cy, r = CIRC
+    hx, hy = 250, 905
+    cone(img, hx + 40, hy)
+
+    def content(inner):
+        d = ImageDraw.Draw(inner)
+        for g in range(-8, 9):
+            d.line([(P(cx + g * 40), P(cy - r)), (P(cx + g * 40), P(cy + r))], fill=(30, 44, 90, 90), width=P(1))
+            d.line([(P(cx - r), P(cy + g * 40)), (P(cx + r), P(cy + g * 40))], fill=(30, 44, 90, 90), width=P(1))
+        # glossy mirror surface below a near-perfect flat line, with one tiny bump
+        sy = cy + 40
+        surf = Image.new("RGBA", inner.size, (0, 0, 0, 0))
+        sd = ImageDraw.Draw(surf)
+        pts = [(P(cx - r), P(sy))]
+        for xx in range(-int(r), int(r) + 1, 2):
+            bump = 14 * math.exp(-(xx / 14.0) ** 2)
+            pts.append((P(cx + xx), P(sy - bump)))
+        pts += [(P(cx + r), P(sy)), (P(cx + r), P(cy + r)), (P(cx - r), P(cy + r))]
+        sd.polygon(pts, fill=(60, 90, 170, 255))
+        surf = surf.filter(ImageFilter.GaussianBlur(P(0.6)))
+        inner.alpha_composite(surf)
+        d2 = ImageDraw.Draw(inner)
+        line = [(P(cx + xx), P(sy - 14 * math.exp(-(xx / 14.0) ** 2))) for xx in range(-int(r), int(r) + 1, 2)]
+        d2.line(line, fill=CYAN + (255,), width=P(3))
+        # bump height marker
+        d2.line([(P(cx + 60), P(sy - 14)), (P(cx + 60), P(sy))], fill=WHITE + (255,), width=P(2))
+        for yy in (sy - 14, sy):
+            d2.line([(P(cx + 52), P(yy)), (P(cx + 68), P(yy))], fill=WHITE + (255,), width=P(2))
+        d2.line([(P(cx + 14), P(sy - 14)), (P(cx + 60), P(sy - 14))], fill=(255, 255, 255, 120), width=P(1))
+        f = F("Inter-Bold.otf", 24)
+        d2.text((P(cx + 76), P(sy - 40)), "0.1 mm", font=f, fill=WHITE)
+        d2.text((P(cx - 125), P(cy - 125)), "Mirror enlarged\nto the size\nof Germany", font=F("Inter-SemiBold.otf", 24), fill=(200, 215, 245), spacing=P(6))
+        glow_layer = Image.new("RGBA", inner.size, (0, 0, 0, 0))
+        gd = ImageDraw.Draw(glow_layer)
+        gd.ellipse([P(cx - 60), P(sy - 40), P(cx + 60), P(sy + 20)], fill=CYAN + (60,))
+        glow_layer = glow_layer.filter(ImageFilter.GaussianBlur(P(18)))
+        inner.alpha_composite(glow_layer)
+
+    circle_frame(img, content)
+    d = ImageDraw.Draw(img)
+    # hero: round EUV mirror disc
+    glow(img, hx, hy, 80, CYAN, 90)
+    d = ImageDraw.Draw(img)
+    d.ellipse([P(hx - 44), P(hy - 44), P(hx + 44), P(hy + 44)], fill=(150, 175, 225, 255), outline=WHITE, width=P(2))
+    d.ellipse([P(hx - 30), P(hy - 34), P(hx - 6), P(hy - 12)], fill=(255, 255, 255, 215))
+    d.ellipse([P(hx - 44), P(hy - 44), P(hx + 44), P(hy + 44)], outline=CYAN, width=P(3))
+    note(img, 62, 1000, notes.get("hero", "An EUV mirror\nin a chip tool"), -4, 29, WHITE, "center")
+    arrow(img, [(185, 1010), (215, 985), (232, 955)], WHITE, 3)
+    callouts(img, notes, "Smoothest mirrors ever made, built by ZEISS for ASML EUV machines.", notes.get("flash", ""), notes.get("scale", ""))
+
+
+SCENES = {"euv": scene_euv, "chip": scene_chip, "wafer": scene_wafer, "mirror": scene_mirror}
 
 
 def build(fact):
