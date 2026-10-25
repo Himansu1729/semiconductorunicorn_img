@@ -148,7 +148,7 @@ def callouts(img, notes, caption, flash, scale):
     text_block(d, 720, 597, notes.get("caption", caption), F("Inter-SemiBold.otf", 24), WHITE, 285, 33)
     if flash or notes.get("flash"):
         note(img, 318, 1082, notes.get("flash", flash), 0, 26, CYAN, "left")
-    if scale or notes.get("scale"):
+    if (notes["scale"] if "scale" in notes else scale):
         y0, x0, x1 = cy + 138, cx - 80, cx + 80
         if fact_dark_scale:
             rrect(img, (x0 - 14, y0 - 16, x1 + 14, y0 + 44), 10, fill=(6, 10, 28), alpha=225)
