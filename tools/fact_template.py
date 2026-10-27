@@ -338,7 +338,51 @@ def scene_mirror(img, notes):
     callouts(img, notes, "Smoothest mirrors ever made, built by ZEISS for ASML EUV machines.", notes.get("flash", ""), notes.get("scale", ""))
 
 
-SCENES = {"euv": scene_euv, "chip": scene_chip, "wafer": scene_wafer, "mirror": scene_mirror}
+def scene_bounce(img, notes):
+    """Light bouncing off a row of mirrors, fading at each bounce (EUV optics loss)."""
+    cx, cy, r = CIRC
+    hx, hy = 250, 905
+    cone(img, hx + 50, hy)
+    pcts = notes.get("pcts", ["100%", "70%", "49%", "34%", "...", "2%"])
+
+    def content(inner):
+        d = ImageDraw.Draw(inner)
+        for g in range(-8, 9):
+            d.line([(P(cx + g * 40), P(cy - r)), (P(cx + g * 40), P(cy + r))], fill=(30, 44, 90, 90), width=P(1))
+            d.line([(P(cx - r), P(cy + g * 40)), (P(cx + r), P(cy + g * 40))], fill=(30, 44, 90, 90), width=P(1))
+        n = len(pcts)
+        xs = [cx - 125 + i * (250 / (n - 1)) for i in range(n)]
+        ys = [cy - 70 if i % 2 == 0 else cy + 70 for i in range(n)]
+        layer = Image.new("RGBA", inner.size, (0, 0, 0, 0))
+        ld = ImageDraw.Draw(layer)
+        for i in range(n - 1):
+            a = int(255 * (0.7 ** i)) if i < n - 2 else 40
+            ld.line([(P(xs[i]), P(ys[i])), (P(xs[i + 1]), P(ys[i + 1]))], fill=CYAN + (max(a, 40),),
+                    width=P(max(9 * (0.8 ** i), 2.5)))
+        inner.alpha_composite(layer.filter(ImageFilter.GaussianBlur(P(1.2))))
+        d = ImageDraw.Draw(inner)
+        f = F("Inter-Bold.otf", 22)
+        for i in range(n):
+            if i not in (0,):
+                d.rounded_rectangle([P(xs[i] - 17), P(ys[i] + (6 if i % 2 == 0 else -14)),
+                                     P(xs[i] + 17), P(ys[i] + (14 if i % 2 == 0 else -6))], radius=P(3),
+                                    fill=(150, 175, 225, 255))
+            ty = ys[i] - 42 if i % 2 == 0 else ys[i] + 22
+            tw = f.getlength(pcts[i]) / S
+            d.text((P(xs[i] - tw / 2), P(ty)), pcts[i], font=f, fill=WHITE if i < n - 1 else CYAN)
+
+    circle_frame(img, content)
+    glow(img, hx, hy, 80, CYAN, 90)
+    d = ImageDraw.Draw(img)
+    d.ellipse([P(hx - 44), P(hy - 44), P(hx + 44), P(hy + 44)], fill=(150, 175, 225, 255), outline=WHITE, width=P(2))
+    d.ellipse([P(hx - 30), P(hy - 34), P(hx - 6), P(hy - 12)], fill=(255, 255, 255, 215))
+    d.ellipse([P(hx - 44), P(hy - 44), P(hx + 44), P(hy + 44)], outline=CYAN, width=P(3))
+    note(img, 62, 1000, notes.get("hero", "One EUV mirror\nof about a dozen"), -4, 29, WHITE, "center")
+    arrow(img, [(185, 1010), (215, 985), (232, 955)], WHITE, 3)
+    callouts(img, notes, "Each mirror absorbs about 30% of the light. The losses add up.", "", "")
+
+
+SCENES = {"bounce": scene_bounce, "euv": scene_euv, "chip": scene_chip, "wafer": scene_wafer, "mirror": scene_mirror}
 
 
 def build(fact):
