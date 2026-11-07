@@ -1,8 +1,41 @@
-{"num": 41, "line1": "ZERO", "line2": "POWER SEEN.", "line3": "THE FIRST ARM CHIP.",
-"body": "In 1985 Acorn's first ARM chip, about 25,000 transistors, worked first time. A meter read no current because the supply was disconnected: it ran on leakage alone.",
-"highlight": "ran on leakage alone",
-"benefits": ["LOW POWER\nDESIGN", "BATTERY\nFRIENDLY", "EFFICIENT\nCHIPS"],
-"bottom": [["phone","SMART-\nPHONES"],["battery","BATTERY\nLIFE"],["laptop","LAPTOPS"],["chip","ARM\nCHIPS"]],
-"scene": "chip",
-"scene_notes": {"caption": "Acorn's first ARM test chips arrived on April 26, 1985.", "hero": "The first ARM\nchip, 1985", "flash": "Powered by\nleakage current", "scale": "~25,000 transistors", "scale_bg": 1},
-"tagline": "TINY POWER.\nHUGE EFFICIENCY.", "file": "fact_arm1_leakage_power.png"}
+{
+ "num": 42,
+ "line1": "1916",
+ "line2": "A PEN, MOLTEN TIN.",
+ "line3": "SILICON'S ORIGIN.",
+ "body": "Legend says Jan Czochralski dipped his pen in molten tin instead of ink and pulled out a thin crystal thread. His pulling method now grows the silicon crystals behind chips.",
+ "highlight": "pulling method",
+ "benefits": [
+  "SINGLE\nCRYSTALS",
+  "WAFER\nSTARTING POINT",
+  "CHIP\nMANUFACTURING"
+ ],
+ "bottom": [
+  [
+   "phone",
+   "SMART-\nPHONES"
+  ],
+  [
+   "laptop",
+   "LAPTOPS"
+  ],
+  [
+   "server",
+   "DATA\nCENTERS"
+  ],
+  [
+   "chip",
+   "CHIPS"
+  ]
+ ],
+ "scene": "wafer",
+ "scene_notes": {
+  "caption": "Czochralski published his crystal-pulling method in 1918.",
+  "hero": "Pulled from\nthe melt",
+  "flash": "Legend: pen\nin molten tin",
+  "scale": "Silicon wafers",
+  "scale_bg": 1
+ },
+ "tagline": "ONE CRYSTAL.\nBILLIONS OF CHIPS.",
+ "file": "fact_czochralski_pen_tin.png"
+}
