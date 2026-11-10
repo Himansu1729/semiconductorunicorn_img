@@ -1,14 +1,14 @@
 {
- "num": 42,
- "line1": "1916",
- "line2": "A PEN, MOLTEN TIN.",
- "line3": "SILICON'S ORIGIN.",
- "body": "Legend says Jan Czochralski dipped his pen in molten tin instead of ink and pulled out a thin crystal thread. His pulling method now grows the silicon crystals behind chips.",
- "highlight": "pulling method",
+ "num": 51,
+ "line1": "10 YEARS",
+ "line2": "LAB TO FAB.",
+ "line3": "A 2000 PREDICTION.",
+ "body": "In 2000, Berkeley's Chenming Hu told Intel the 3D FinFET transistor would need about 10 years to reach production. Intel announced its version in May 2011, one year past that.",
+ "highlight": "about 10 years",
  "benefits": [
-  "SINGLE\nCRYSTALS",
-  "WAFER\nSTARTING POINT",
-  "CHIP\nMANUFACTURING"
+  "3D\nTRANSISTORS",
+  "BETTER GATE\nCONTROL",
+  "LOWER\nLEAKAGE"
  ],
  "bottom": [
   [
@@ -28,14 +28,14 @@
    "CHIPS"
   ]
  ],
- "scene": "wafer",
+ "scene": "chip",
  "scene_notes": {
-  "caption": "Czochralski published his crystal-pulling method in 1918.",
-  "hero": "Pulled from\nthe melt",
-  "flash": "Legend: pen\nin molten tin",
-  "scale": "Silicon wafers",
+  "caption": "Intel unveiled 22 nm Tri-Gate on May 4, 2011.",
+  "hero": "A 3D fin\nof silicon",
+  "flash": "Berkeley, 1999:\nthe FinFET",
+  "scale": "22 nm, 2011",
   "scale_bg": 1
  },
- "tagline": "ONE CRYSTAL.\nBILLIONS OF CHIPS.",
- "file": "fact_czochralski_pen_tin.png"
+ "tagline": "FROM A 1997 LAB.\nTO EVERY CHIP.",
+ "file": "fact_finfet_ten_years.png"
 }
