@@ -1,41 +1,20 @@
 {
- "num": 51,
- "line1": "10 YEARS",
- "line2": "LAB TO FAB.",
- "line3": "A 2000 PREDICTION.",
- "body": "In 2000, Berkeley's Chenming Hu told Intel the 3D FinFET transistor would need about 10 years to reach production. Intel announced its version in May 2011, one year past that.",
- "highlight": "about 10 years",
- "benefits": [
-  "3D\nTRANSISTORS",
-  "BETTER GATE\nCONTROL",
-  "LOWER\nLEAKAGE"
- ],
- "bottom": [
-  [
-   "phone",
-   "SMART-\nPHONES"
-  ],
-  [
-   "laptop",
-   "LAPTOPS"
-  ],
-  [
-   "server",
-   "DATA\nCENTERS"
-  ],
-  [
-   "chip",
-   "CHIPS"
-  ]
- ],
+ "num": 61,
+ "line1": "10x FIELD",
+ "line2": "THAN SILICON.",
+ "line3": "GaN'S WIDE BANDGAP.",
+ "body": "Gallium nitride's bandgap is about 3.4 eV, roughly three times silicon's 1.1 eV. That lets it survive about ten times the electric field before breaking down, so GaN power chips can be far smaller.",
+ "highlight": "about ten times",
+ "benefits": ["SMALLER\nPOWER CHIPS", "FASTER\nSWITCHING", "LESS\nWASTED HEAT"],
+ "bottom": [["phone","FAST\nCHARGERS"],["server","DATA\nCENTERS"],["bolt","POWER\nCONVERTERS"],["chip","CHIPS"]],
  "scene": "chip",
  "scene_notes": {
-  "caption": "Intel unveiled 22 nm Tri-Gate on May 4, 2011.",
-  "hero": "A 3D fin\nof silicon",
-  "flash": "Berkeley, 1999:\nthe FinFET",
-  "scale": "22 nm, 2011",
+  "caption": "Wider bandgap means a higher breakdown field.",
+  "hero": "A GaN power\ntransistor",
+  "flash": "Bandgap: GaN 3.4 eV\nvs silicon 1.1 eV",
+  "scale": "3.3 vs 0.3 MV/cm",
   "scale_bg": 1
  },
- "tagline": "FROM A 1997 LAB.\nTO EVERY CHIP.",
- "file": "fact_finfet_ten_years.png"
+ "tagline": "WIDER GAP.\nSMALLER POWER.",
+ "file": "fact_gan_bandgap.png"
 }
