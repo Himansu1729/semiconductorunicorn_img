@@ -1,20 +1,19 @@
 {
- "num": 62,
- "line1": "38 MILLION",
- "line2": "SRAM BITS PER MM².",
- "line3": "ON TSMC'S 2 NM.",
- "body": "TSMC reports about 38 megabits per square millimeter for its N2 SRAM, the densest cache memory cell so far. That is roughly 4.75 MB of on-chip memory in one square millimeter.",
- "highlight": "38 megabits",
- "benefits": ["BIGGER\nCACHES", "FASTER\nON-CHIP DATA", "FEWER\nMEMORY TRIPS"],
- "bottom": [["ai","AI\nCHIPS"],["server","DATA\nCENTERS"],["laptop","LAPTOPS"],["chip","CHIPS"]],
- "scene": "chip",
+ "num": 71,
+ "line1": "29.8 °C",
+ "line2": "GALLIUM MELTS",
+ "line3": "IN YOUR HAND.",
+ "body": "Gallium melts at about 29.8 °C, so a solid piece turns liquid in your palm. Yet this soft metal is the base of gallium arsenide and gallium nitride chips used in LEDs, lasers and power electronics.",
+ "highlight": "29.8 °C",
+ "benefits": ["BRIGHT\nLEDS", "FAST\nRF CHIPS", "EFFICIENT\nPOWER"],
+ "bottom": [["phone","PHONES"],["bolt","CHARGERS"],["server","DATA\nCENTERS"],["chip","CHIPS"]],
+ "scene": "wafer",
  "scene_notes": {
-  "caption": "SRAM is fast memory\nright beside the logic.",
-  "hero": "1 mm² of\nN2 SRAM",
-  "flash": "N2: ~38 Mb/mm²\n+11% vs N3",
-  "scale": "1 mm² = ~4.75 MB",
-  "scale_bg": 1
+  "caption": "GaAs and GaN make\nspecial chip wafers.",
+  "hero": "Gallium wafer\nchips",
+  "flash": "Solid at 29 °C\nLiquid at 30 °C",
+  "scale": "near body heat"
  },
- "tagline": "MORE MEMORY.\nSAME SPACE.",
- "file": "fact_sram_n2_density.png"
+ "tagline": "A METAL THAT MELTS.\nA CHIP THAT SHINES.",
+ "file": "fact_gallium_melts_in_hand.png"
 }
