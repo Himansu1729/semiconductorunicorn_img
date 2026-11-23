@@ -1,19 +1,19 @@
 {
- "num": 71,
- "line1": "29.8 °C",
- "line2": "GALLIUM MELTS",
- "line3": "IN YOUR HAND.",
- "body": "Gallium melts at about 29.8 °C, so a solid piece turns liquid in your palm. Yet this soft metal is the base of gallium arsenide and gallium nitride chips used in LEDs, lasers and power electronics.",
- "highlight": "29.8 °C",
- "benefits": ["BRIGHT\nLEDS", "FAST\nRF CHIPS", "EFFICIENT\nPOWER"],
- "bottom": [["phone","PHONES"],["bolt","CHARGERS"],["server","DATA\nCENTERS"],["chip","CHIPS"]],
- "scene": "wafer",
+ "num": 72,
+ "line1": "32,768",
+ "line2": "HZ = 2^15.",
+ "line3": "ONE PERFECT SECOND.",
+ "body": "Watch crystals vibrate at 32,768 Hz because that is 2 to the power 15. Halve it 15 times with simple flip-flops and you get exactly 1 Hz, a clean one-second tick for clocks and chips.",
+ "highlight": "32,768 Hz",
+ "benefits": ["EXACT\n1 HZ TICK", "SIMPLE\nDIVIDERS", "LOW\nPOWER"],
+ "bottom": [["phone","PHONES"],["laptop","LAPTOPS"],["battery","WEARABLES"],["chip","MICRO-\nCONTROLLERS"]],
+ "scene": "chip",
  "scene_notes": {
-  "caption": "GaAs and GaN make\nspecial chip wafers.",
-  "hero": "Gallium wafer\nchips",
-  "flash": "Solid at 29 °C\nLiquid at 30 °C",
-  "scale": "near body heat"
+  "caption": "Tiny quartz crystal\nkeeps time.",
+  "hero": "15 halvings",
+  "flash": "32,768 to 1 Hz",
+  "scale": "RTC clock chip"
  },
- "tagline": "A METAL THAT MELTS.\nA CHIP THAT SHINES.",
- "file": "fact_gallium_melts_in_hand.png"
+ "tagline": "HALVE IT 15 TIMES.\nGET ONE SECOND.",
+ "file": "fact_crystal_32768_hz.png"
 }
