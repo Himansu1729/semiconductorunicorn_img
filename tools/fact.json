@@ -1,19 +1,19 @@
 {
- "num": 72,
- "line1": "32,768",
- "line2": "HZ = 2^15.",
- "line3": "ONE PERFECT SECOND.",
- "body": "Watch crystals vibrate at 32,768 Hz because that is 2 to the power 15. Halve it 15 times with simple flip-flops and you get exactly 1 Hz, a clean one-second tick for clocks and chips.",
- "highlight": "32,768 Hz",
- "benefits": ["EXACT\n1 HZ TICK", "SIMPLE\nDIVIDERS", "LOW\nPOWER"],
- "bottom": [["phone","PHONES"],["laptop","LAPTOPS"],["battery","WEARABLES"],["chip","MICRO-\nCONTROLLERS"]],
+ "num": 77,
+ "line1": "60 mV",
+ "line2": "FOR 10x CURRENT.",
+ "line3": "THE ROOM-TEMP LIMIT.",
+ "body": "Even a perfect silicon transistor needs about 60 mV more gate voltage for every 10x rise in off-state current at room temperature. This Boltzmann limit, kT/q x ln(10), is why leakage is so hard to beat.",
+ "highlight": "about 60 mV",
+ "benefits": ["THERMAL\nPHYSICS", "LEAKAGE\nFLOOR", "LOW-VOLT\nCHIPS"],
+ "bottom": [["chip","LOGIC\nCHIPS"],["phone","PHONES"],["battery","IOT\nDEVICES"],["server","DATA\nCENTERS"]],
  "scene": "chip",
  "scene_notes": {
-  "caption": "Tiny quartz crystal\nkeeps time.",
-  "hero": "15 halvings",
-  "flash": "32,768 to 1 Hz",
-  "scale": "RTC clock chip"
+  "caption": "Gate voltage controls\nthe current.",
+  "hero": "10x current\n= 60 mV",
+  "flash": "kT/q x ln(10) = 60 mV/dec",
+  "scale": "At 300 K", "scale_bg": 1
  },
- "tagline": "HALVE IT 15 TIMES.\nGET ONE SECOND.",
- "file": "fact_crystal_32768_hz.png"
+ "tagline": "BOLTZMANN SETS\nTHE FLOOR.",
+ "file": "fact_boltzmann_60mv.png"
 }
