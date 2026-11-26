@@ -1,19 +1,18 @@
 {
- "num": 77,
- "line1": "60 mV",
- "line2": "FOR 10x CURRENT.",
- "line3": "THE ROOM-TEMP LIMIT.",
- "body": "Even a perfect silicon transistor needs about 60 mV more gate voltage for every 10x rise in off-state current at room temperature. This Boltzmann limit, kT/q x ln(10), is why leakage is so hard to beat.",
- "highlight": "about 60 mV",
- "benefits": ["THERMAL\nPHYSICS", "LEAKAGE\nFLOOR", "LOW-VOLT\nCHIPS"],
- "bottom": [["chip","LOGIC\nCHIPS"],["phone","PHONES"],["battery","IOT\nDEVICES"],["server","DATA\nCENTERS"]],
- "scene": "chip",
+ "num": 96,
+ "line1": "44%",
+ "line2": "SINKS IN.",
+ "line3": "OXIDE EATS SILICON.",
+ "body": "Heat silicon in oxygen to grow SiO2 and about 44% of the final oxide thickness forms below the original surface, using up the wafer's own silicon.",
+ "highlight": "about 44%",
+ "benefits": ["THERMAL\nOXIDATION", "BURIED\nINTERFACE", "FAB\nBASICS"],
+ "bottom": [["chip","LOGIC\nCHIPS"],["bolt","POWER\nDEVICES"],["gauge","PROCESS\nCONTROL"],["server","DATA\nCENTERS"]],
+ "scene": "wafer",
  "scene_notes": {
-  "caption": "Gate voltage controls\nthe current.",
-  "hero": "10x current\n= 60 mV",
-  "flash": "kT/q x ln(10) = 60 mV/dec",
-  "scale": "At 300 K", "scale_bg": 1
+  "caption": "Grow 100 nm of oxide, lose about 44 nm of silicon.",
+  "hero": "Oxide grows\nup AND down",
+  "flash": "The other ~56% rises\nabove the old surface"
  },
- "tagline": "BOLTZMANN SETS\nTHE FLOOR.",
- "file": "fact_boltzmann_60mv.png"
+ "tagline": "THE WAFER FEEDS\nTHE OXIDE.",
+ "file": "fact_oxide_consumes_silicon.png"
 }
