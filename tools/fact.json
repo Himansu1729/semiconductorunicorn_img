@@ -1,18 +1,18 @@
 {
- "num": 96,
- "line1": "44%",
- "line2": "SINKS IN.",
- "line3": "OXIDE EATS SILICON.",
- "body": "Heat silicon in oxygen to grow SiO2 and about 44% of the final oxide thickness forms below the original surface, using up the wafer's own silicon.",
- "highlight": "about 44%",
- "benefits": ["THERMAL\nOXIDATION", "BURIED\nINTERFACE", "FAB\nBASICS"],
- "bottom": [["chip","LOGIC\nCHIPS"],["bolt","POWER\nDEVICES"],["gauge","PROCESS\nCONTROL"],["server","DATA\nCENTERS"]],
- "scene": "wafer",
+ "num": 97,
+ "line1": "10 mm+",
+ "line2": "TIN HAIRS.",
+ "line3": "THEY SHORT CIRCUITS.",
+ "body": "Pure tin plating can sprout metal whiskers, in rare cases over 10 mm long, with no electric field needed. NASA says they have knocked out commercial satellites.",
+ "highlight": "over 10 mm long",
+ "benefits": ["SPACE\nHARDWARE", "CHIP\nPACKAGING", "FAILURE\nANALYSIS"],
+ "bottom": [["wave","SPACE\nSATELLITES"],["bolt","SHORT\nCIRCUITS"],["chip","CHIP\nLEADS"],["gauge","RELIABILITY\nTESTS"]],
+ "scene": "whisker",
  "scene_notes": {
-  "caption": "Grow 100 nm of oxide, lose about 44 nm of silicon.",
-  "hero": "Oxide grows\nup AND down",
-  "flash": "The other ~56% rises\nabove the old surface"
+  "caption": "One metal whisker can bridge two terminals.",
+  "hero": "Tin-plated\nmetal leads",
+  "flash": "Typically just a few\nmicrons thick"
  },
- "tagline": "THE WAFER FEEDS\nTHE OXIDE.",
- "file": "fact_oxide_consumes_silicon.png"
+ "tagline": "TINY HAIRS.\nBIG FAILURES.",
+ "file": "fact_tin_whiskers.png"
 }

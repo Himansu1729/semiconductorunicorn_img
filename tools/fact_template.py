@@ -3,7 +3,7 @@
 Usage (from tools/):  OUT_DIR=./out python3 -I fact_template.py fact.json
 fact.json keys: (no number is shown; num only seeds the background) num, line1 (cyan), line2 (white), line3 (purple), body, highlight,
   benefits[3] (2-line labels, '\n' separated), bottom[4] ([icon, label]), scene
-  (euv|chip|wafer), scene_notes{...}, tagline (2 lines '\n'), file (output name)
+  (euv|chip|wafer|mirror|bounce|whisker), scene_notes{...}, tagline (2 lines '\n'), file (output name)
 """
 import sys, json, math, random
 sys.path.insert(0, __file__.rsplit("/", 1)[0])
@@ -382,7 +382,59 @@ def scene_bounce(img, notes):
     callouts(img, notes, "Each mirror absorbs about 30% of the light. The losses add up.", "", "")
 
 
-SCENES = {"bounce": scene_bounce, "euv": scene_euv, "chip": scene_chip, "wafer": scene_wafer, "mirror": scene_mirror}
+def scene_whisker(img, notes):
+    """Tin whisker growing from one plated lead until it touches its neighbour."""
+    cx, cy, r = CIRC
+    hx, hy = 250, 905
+    cone(img, hx + 50, hy)
+
+    def content(inner):
+        d = ImageDraw.Draw(inner)
+        for g in range(-8, 9):
+            d.line([(P(cx + g * 40), P(cy - r)), (P(cx + g * 40), P(cy + r))], fill=(30, 44, 90, 90), width=P(1))
+            d.line([(P(cx - r), P(cy + g * 40)), (P(cx + r), P(cy + g * 40))], fill=(30, 44, 90, 90), width=P(1))
+        # two tin-plated terminals
+        for x0, x1 in ((cx - r, cx - 105), (cx + 105, cx + r)):
+            d.rectangle([P(x0), P(cy - 100), P(x1), P(cy + 100)], fill=(120, 138, 175, 255),
+                        outline=(220, 230, 255, 255), width=P(3))
+        # short stubs sprouting from both faces
+        rnd = random.Random(11)
+        for side, x in ((1, cx - 105), (-1, cx + 105)):
+            for yy in (-78, -44, 38, 72):
+                ln = rnd.randint(18, 55)
+                d.line([(P(x), P(cy + yy)), (P(x + side * ln * 0.55), P(cy + yy + rnd.randint(-16, 16))),
+                        (P(x + side * ln), P(cy + yy + rnd.randint(-22, 22)))],
+                       fill=(205, 218, 245, 255), width=P(3), joint="curve")
+        spark = Image.new("RGBA", inner.size, (0, 0, 0, 0))
+        sd = ImageDraw.Draw(spark)
+        sx, sy = cx + 105, cy - 4
+        for rr, col, al in ((48, VIOLET, 150), (24, CYAN, 220), (10, (255, 255, 255), 255)):
+            sd.ellipse([P(sx - rr), P(sy - rr), P(sx + rr), P(sy + rr)], fill=col + (al,))
+        inner.alpha_composite(spark.filter(ImageFilter.GaussianBlur(P(9))))
+        # the long whisker that bridges the gap
+        d2 = ImageDraw.Draw(inner)
+        d2.line([(P(cx - 105), P(cy + 8)), (P(cx - 52), P(cy - 6)), (P(cx - 8), P(cy + 14)),
+                 (P(cx + 46), P(cy - 14)), (P(sx), P(sy))], fill=(255, 255, 255, 255), width=P(5), joint="curve")
+
+    circle_frame(img, content)
+    # hero: chip package with metal leads and a few hairs
+    glow(img, hx, hy, 90, CYAN, 70)
+    d = ImageDraw.Draw(img)
+    for i in range(-2, 3):
+        for s in (-1, 1):
+            d.line([(P(hx + s * 38), P(hy + i * 18)), (P(hx + s * 66), P(hy + i * 18))], fill=(200, 212, 240), width=P(6))
+    rrect(img, (hx - 40, hy - 52, hx + 40, hy + 52), 8, fill=(24, 30, 60), alpha=255, outline=CYAN + (255,), width=3)
+    d = ImageDraw.Draw(img)
+    d.ellipse([P(hx - 28), P(hy - 40), P(hx - 18), P(hy - 30)], fill=VIOLET)
+    for x0, y0, x1, y1 in ((hx + 56, hy - 18, hx + 61, hy), (hx - 58, hy + 18, hx - 50, hy + 36),
+                           (hx + 62, hy + 18, hx + 76, hy + 7), (hx - 62, hy - 36, hx - 72, hy - 52)):
+        d.line([(P(x0), P(y0)), (P(x1), P(y1))], fill=WHITE, width=P(2))
+    note(img, 62, 1000, notes.get("hero", "Tin-plated\nchip leads"), -4, 29, WHITE, "center")
+    arrow(img, [(185, 1010), (200, 985), (205, 955)], WHITE, 3)
+    callouts(img, notes, "A conductive tin whisker bridges two terminals.", "", "")
+
+
+SCENES = {"whisker": scene_whisker, "bounce": scene_bounce, "euv": scene_euv, "chip": scene_chip, "wafer": scene_wafer, "mirror": scene_mirror}
 
 
 def build(fact):
