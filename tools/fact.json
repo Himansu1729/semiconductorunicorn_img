@@ -1,18 +1,39 @@
 {
- "num": 97,
- "line1": "10 mm+",
- "line2": "TIN HAIRS.",
- "line3": "THEY SHORT CIRCUITS.",
- "body": "Pure tin plating can sprout metal whiskers, in rare cases over 10 mm long, with no electric field needed. NASA says they have knocked out commercial satellites.",
- "highlight": "over 10 mm long",
- "benefits": ["SPACE\nHARDWARE", "CHIP\nPACKAGING", "FAILURE\nANALYSIS"],
- "bottom": [["wave","SPACE\nSATELLITES"],["bolt","SHORT\nCIRCUITS"],["chip","CHIP\nLEADS"],["gauge","RELIABILITY\nTESTS"]],
- "scene": "whisker",
+ "num": 114,
+ "line1": "~10%",
+ "line2": "BIGGER.",
+ "line3": "WHEN SILICON FREEZES.",
+ "body": "Like water, silicon expands as it turns solid. That makes it less dense than its own 1414 °C melt, so a solid chunk floats, like ice in water.",
+ "highlight": "less dense",
+ "benefits": [
+  "CRYSTAL\nGROWTH",
+  "INGOT\nCASTING",
+  "CRUCIBLE\nDESIGN"
+ ],
+ "bottom": [
+  [
+   "chip",
+   "SILICON\nWAFERS"
+  ],
+  [
+   "bolt",
+   "SOLAR\nCELLS"
+  ],
+  [
+   "gauge",
+   "DENSITY\nPHYSICS"
+  ],
+  [
+   "ai",
+   "AI\nCHIPS"
+  ]
+ ],
+ "scene": "float",
  "scene_notes": {
-  "caption": "One metal whisker can bridge two terminals.",
-  "hero": "Tin-plated\nmetal leads",
-  "flash": "Typically just a few\nmicrons thick"
+  "caption": "Solid silicon floats on molten silicon.",
+  "hero": "A chunk of\nsolid silicon",
+  "flash": "Trapped melt can crack\nthe solid around it"
  },
- "tagline": "TINY HAIRS.\nBIG FAILURES.",
- "file": "fact_tin_whiskers.png"
+ "tagline": "SOLID ON TOP.\nLIQUID BELOW.",
+ "file": "fact_silicon_floats.png"
 }

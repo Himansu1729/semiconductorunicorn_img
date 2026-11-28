@@ -3,7 +3,7 @@
 Usage (from tools/):  OUT_DIR=./out python3 -I fact_template.py fact.json
 fact.json keys: (no number is shown; num only seeds the background) num, line1 (cyan), line2 (white), line3 (purple), body, highlight,
   benefits[3] (2-line labels, '\n' separated), bottom[4] ([icon, label]), scene
-  (euv|chip|wafer|mirror|bounce|whisker), scene_notes{...}, tagline (2 lines '\n'), file (output name)
+  (euv|chip|wafer|mirror|bounce|whisker|float), scene_notes{...}, tagline (2 lines '\n'), file (output name)
 """
 import sys, json, math, random
 sys.path.insert(0, __file__.rsplit("/", 1)[0])
@@ -434,7 +434,61 @@ def scene_whisker(img, notes):
     callouts(img, notes, "A conductive tin whisker bridges two terminals.", "", "")
 
 
-SCENES = {"whisker": scene_whisker, "bounce": scene_bounce, "euv": scene_euv, "chip": scene_chip, "wafer": scene_wafer, "mirror": scene_mirror}
+def scene_float(img, notes):
+    """A solid silicon chunk floating on its own melt, mostly submerged."""
+    cx, cy, r = CIRC
+    hx, hy = 250, 905
+    cone(img, hx + 50, hy)
+
+    def content(inner):
+        d = ImageDraw.Draw(inner)
+        for g in range(-8, 9):
+            d.line([(P(cx + g * 40), P(cy - r)), (P(cx + g * 40), P(cy + r))], fill=(30, 44, 90, 90), width=P(1))
+            d.line([(P(cx - r), P(cy + g * 40)), (P(cx + r), P(cy + g * 40))], fill=(30, 44, 90, 90), width=P(1))
+        sy = cy - 22  # melt surface
+        # solid chunk: only about a tenth of it stands above the surface
+        chunk = [(cx - 76, sy - 4), (cx - 40, sy - 17), (cx + 34, sy - 15), (cx + 80, sy - 2),
+                 (cx + 66, sy + 76), (cx + 8, sy + 100), (cx - 62, sy + 70)]
+        d.polygon([(P(a), P(b)) for a, b in chunk], fill=(175, 190, 218, 255))
+        # translucent melt over the submerged part
+        melt = Image.new("RGBA", inner.size, (0, 0, 0, 0))
+        md = ImageDraw.Draw(melt)
+        md.rectangle([P(cx - r), P(sy), P(cx + r), P(cy + r)], fill=(105, 75, 215, 150))
+        inner.alpha_composite(melt)
+        g_layer = Image.new("RGBA", inner.size, (0, 0, 0, 0))
+        ImageDraw.Draw(g_layer).ellipse([P(cx - 170), P(sy - 26), P(cx + 170), P(sy + 30)], fill=CYAN + (60,))
+        inner.alpha_composite(g_layer.filter(ImageFilter.GaussianBlur(P(18))))
+        d = ImageDraw.Draw(inner)
+        d.line([(P(a), P(b)) for a, b in chunk + chunk[:1]], fill=(255, 255, 255, 255), width=P(3), joint="curve")
+        for a, b in (((cx - 40, sy - 17), (cx - 12, sy + 36)), ((cx + 34, sy - 15), (cx - 12, sy + 36)),
+                     ((cx - 12, sy + 36), (cx + 8, sy + 100))):
+            d.line([(P(a[0]), P(a[1])), (P(b[0]), P(b[1]))], fill=(235, 242, 255, 170), width=P(2))
+        # surface line, broken where the chunk pokes through
+        for x0, x1 in ((cx - r, cx - 75), (cx + 78, cx + r)):
+            d.line([(P(x0), P(sy)), (P(x1), P(sy))], fill=CYAN + (255,), width=P(4))
+        f = F("Inter-SemiBold.otf", 23)
+        for t, yy, col in ((notes.get("top", "Solid: about 2.3 g/cm\u00b3"), sy - 92, WHITE),
+                           (notes.get("low", "Melt: about 2.5 g/cm\u00b3"), sy + 130, CYAN)):
+            tw = f.getlength(t) / S
+            d.text((P(cx - tw / 2), P(yy)), t, font=f, fill=col)
+
+    circle_frame(img, content)
+    # hero: a faceted piece of solid silicon
+    glow(img, hx, hy, 90, CYAN, 80)
+    d = ImageDraw.Draw(img)
+    rock = [(hx - 50, hy - 8), (hx - 22, hy - 44), (hx + 28, hy - 38), (hx + 52, hy + 2),
+            (hx + 30, hy + 40), (hx - 26, hy + 44)]
+    d.polygon([(P(a), P(b)) for a, b in rock], fill=(120, 138, 175))
+    d.polygon([(P(a), P(b)) for a, b in (rock[0], rock[1], rock[2], (hx - 2, hy - 2))], fill=(180, 195, 228))
+    d.line([(P(a), P(b)) for a, b in rock + rock[:1]], fill=WHITE, width=P(2), joint="curve")
+    for k in (0, 2, 3, 5):
+        d.line([(P(hx - 2), P(hy - 2)), (P(rock[k][0]), P(rock[k][1]))], fill=(225, 235, 255), width=P(1.5))
+    note(img, 62, 1000, notes.get("hero", "A chunk of\nsolid silicon"), -4, 29, WHITE, "center")
+    arrow(img, [(185, 1010), (215, 985), (232, 955)], WHITE, 3)
+    callouts(img, notes, "Solid silicon floats on its own melt.", "", "")
+
+
+SCENES = {"float": scene_float, "whisker": scene_whisker, "bounce": scene_bounce, "euv": scene_euv, "chip": scene_chip, "wafer": scene_wafer, "mirror": scene_mirror}
 
 
 def build(fact):
